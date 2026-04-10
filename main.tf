@@ -3,7 +3,7 @@ resource "aws_instance" "workstation" {
   instance_type = "t3.micro"
   vpc_security_group_ids = [var.sg_id]
   user_data = file("k8.sh")
-
+  iam_instance_profile = aws_iam_instance_profile.configure.name
   root_block_device {
     volume_size = 50
     volume_type = "gp3"
@@ -31,7 +31,10 @@ resource "aws_iam_role" "configure" {
     ]
   })
 }
-
+resource "aws_iam_instance_profile" "configure" {
+  name = "aws-configure-likeCLI-profile"
+  role = aws_iam_role.configure.name
+}
 resource "aws_iam_role_policy_attachment" "aws-configure" {
   role       = aws_iam_role.configure.name
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
