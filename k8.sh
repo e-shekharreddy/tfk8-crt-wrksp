@@ -34,3 +34,5 @@ ln -s /opt/kubectx/kubens /usr/local/bin/kubens
 
 # install K9s
 curl -sS https://webinstall.dev/k9s | bash
+ln -sf /home/ec2-user/.local/bin/k9s /usr/local/bin/k9s
+
