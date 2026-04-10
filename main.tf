@@ -15,3 +15,24 @@ resource "aws_instance" "workstation" {
   }
 }
 
+resource "aws_iam_role" "configure" {
+  name = "admin-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Principal = {
+          Service = "ec2.amazonaws.com"   # or lambda.amazonaws.com, etc.
+        }
+        Action = "sts:AssumeRole"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "aws-configure" {
+  role       = aws_iam_role.configure.name
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+}
