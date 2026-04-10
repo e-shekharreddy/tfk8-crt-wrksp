@@ -31,11 +31,12 @@ resource "aws_iam_role" "configure" {
     ]
   })
 }
-resource "aws_iam_instance_profile" "configure" {
-  name = "aws-configure-likeCLI-profile"
-  role = aws_iam_role.configure.name
-}
+
 resource "aws_iam_role_policy_attachment" "aws-configure" {
   role       = aws_iam_role.configure.name
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+}
+resource "aws_iam_instance_profile" "configure" {
+  name = "aws-configure-likeCLI-profile"
+  role = aws_iam_role.configure.name
 }
