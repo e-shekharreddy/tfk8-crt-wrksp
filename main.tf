@@ -16,7 +16,7 @@ resource "aws_instance" "workstation" {
 }
 
 resource "aws_iam_role" "configure" {
-  name = "admin-role"
+  name = "aws-configure-likeCLI"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
