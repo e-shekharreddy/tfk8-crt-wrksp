@@ -33,5 +33,11 @@ git clone https://github.com/ahmetb/kubectx /opt/kubectx
 ln -s /opt/kubectx/kubens /usr/local/bin/kubens
 
 # install K9s
-curl -sS https://webinstall.dev/k9s | bash
+curl -sLO "https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_amd64.tar.gz"
+tar -xzf k9s_Linux_amd64.tar.gz -C /tmp && rm k9s_Linux_amd64.tar.gz
+sudo install -m 0755 /tmp/k9s /usr/local/bin && rm /tmp/k9s
 
+# Clone eksctl repo 
+cd /home/ec2-user
+sudo -u ec2-user git clone https://github.com/e-shekharreddy/eksctl.git
+cd eksctl
