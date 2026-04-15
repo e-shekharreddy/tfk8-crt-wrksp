@@ -40,4 +40,3 @@ sudo install -m 0755 /tmp/k9s /usr/local/bin && rm /tmp/k9s
 # Clone eksctl repo 
 cd /home/ec2-user
 sudo -u ec2-user git clone https://github.com/e-shekharreddy/eksctl.git
-cd eksctl
